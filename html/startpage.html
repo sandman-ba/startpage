@@ -11,14 +11,10 @@
     <link href="favicon.png" rel="shortcut icon" type="image/x-icon" />
 </head>
 <body>
-    <div id="search">
-        <input id="search-field" type="text" name="search-field"/>
-    </div>
     <div class="container">
         <div id="clock"></div>
-        <div class="weather-container">
-            <a class="weatherwidget-io" href="https://forecast7.com/en/35d96n83d92/knoxville/" data-label_1="KNOXVILLE" data-label_2="WEATHER" data-font="Ubuntu" data-icons="Climacons Animated" data-days="3" data-theme="weather_one" >KNOXVILLE WEATHER</a> 
-        </div>
+        <div id="current_date"></div>
+        <a class="weatherwidget-io" href="https://forecast7.com/en/35d96n83d92/knoxville/" data-label_1="Knoxville" data-label_2="Tennessee" data-icons="Climacons Animated" data-days="3" data-theme="dark" data-basecolor="#00000050">Knoxville Tennessee</a> 
         <div class="bookmark-container">
             <div class="bookmark-set">
                 <div class="bookmark-title">Google</div>
@@ -70,34 +66,12 @@
                 </div>
             </div>
         </div>
+	<div id="search">
+            <input id="search-field" type="text" name="search-field"/>
+	</div>
     </div>
 
     <script>
-        // Search on enter key event
-        document.getElementById("search-field").addEventListener("keydown",  event => { 
-            if (event.keyCode === 13) {
-                var val = document.getElementById("search-field").value;
-                window.open("https://searx.be/search?q=" + val);
-            }
-        });
-
-        // Get current time and format
-        getTime = () => {
-            let date = new Date(),
-                day = date.getDate(),
-                month = date.getMonth() + 1,
-                year = date.getFullYear(),
-                min = date.getMinutes(),
-                hour = date.getHours();
-
-            return "" + 
-                month + "/" + 
-                day + "/" + 
-                year + " - " + 
-                (hour < 10 ? ("0" + hour) : hour) + ":" + 
-                (min < 10 ? ("0" + min) : min); 
-        }
-
 	// Weather Widget Function
 	!function(d, s, id) {
 	    var js, fjs = d.getElementsByTagName(s)[0];
@@ -109,14 +83,57 @@
 	    }
 	}
 	(document,'script','weatherwidget-io-js');
+
+        // Search on enter key event
+        document.getElementById("search-field").addEventListener("keydown",  event => { 
+            if (event.keyCode === 13) {
+                var val = document.getElementById("search-field").value;
+                window.open("https://searx.be/search?q=" + val);
+            }
+        });
+
+        // Get current time and format
+        getTime = () => {
+            let date = new Date(),
+                min = date.getMinutes(),
+                hour = date.getHours();
+            return "" + 
+                (hour < 10 ? ("0" + hour) : hour) + ":" + 
+                (min < 10 ? ("0" + min) : min); 
+        }
+
+        // Get current date and format
+        getToday = () => {
+            let date = new Date(),
+    	        months = ["January", "February", "March", "April", "June", "July", "August", "September", "October", "November", "December"],
+	        days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+                day = date.getDate(),
+	        weekday = days[date.getDay()],
+                month = months[date.getMonth()],
+                year = date.getFullYear();
+
+            return "" + 
+                weekday + " the " +
+                ((day % 10) == 1 ? (day + "st") :
+		 ((day % 10) == 2 ? (day + "nd") :
+		  ((day % 10) == 3 ? (day + "rd") :
+		   (day + "th")
+		  )
+		 )
+		) + " of " + 
+		month + " " + 
+                year;
+        }
 	
         window.onload = () => {
-           // Set up the clock
+            // Set up the clock
             document.getElementById("clock").innerHTML = getTime();
             // Set clock interval to tick clock
             setInterval( () => {
                 document.getElementById("clock").innerHTML = getTime();
             },100);
+            // Set up the date
+            document.getElementById("current_date").innerHTML = getToday();
         }
 
         document.addEventListener("keydown", event => {

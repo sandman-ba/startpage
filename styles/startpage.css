@@ -4,7 +4,8 @@
 @import url('https://fonts.googleapis.com/css?family=Anton');
 
 body {
-    background-color: #282c34;
+    background-image: url(harley-quinn2.jpg);
+    background-color: #cccccc;
     margin: 0px;
 }
 
@@ -19,18 +20,27 @@ body {
 
 #clock {
     font-family: sans-serif;
-    font-size: 4.0rem;
+    font-size: 5.0rem;
     font-family: "Anton";
     color: #fff;
     margin-bottom: .25em;
+    text-align: center;
+}
+
+#current_date {
+    font-family: sans-serif;
+    font-size: 2.0rem;
+    font-family: "Anton";
+    color: #fff;
+    margin-bottom: .25em;
+    text-align: center;
 }
 
 #search {
-    width: 100%;
-    height: 100vh;
-    background-color: #000000;
+    width: 30%;
+    background-color: #00000050;
+    backdrop-filter: blur(8px);
     display: none;
-    position: absolute;
     box-sizing: border-box;
     flex-direction: column;
     align-items: center;
@@ -41,27 +51,26 @@ body {
     width: 90%;
     padding: .75em 1em;
     box-sizing: border-box;
-    background-color: #000000;
+    background-color: #000000b0;
     border: solid 0px #000000;
     font-family: "Roboto Mono";
-    font-size: 4rem;
+    font-size: 2rem;
     color: #f2f2f2;
     outline: none;
     border-radius: 3px;
-    margin-bottom: 1em;
+    margin-bottom: .5em;
+    margin-top: .5em;
     text-align: center;
 }
 
-.weather-container {
+.weatherwidget-io {
     width: 30%;
-    background-color: #000000;
     padding: 1em;
+    backdrop-filter: blur(8px);
     border-radius: 3px;
-    font-family: "Roboto Mono";
-    font-size: 1.2rem;
-    color: #fff;
-    text-align: center;
+    font-size: 1rem;
 }
+
 .inline {
     display: inline-block;
 }
@@ -93,25 +102,32 @@ body {
 
 .bookmark-set{
     padding: 1em;
-    background-color: #000000;
     border-radius: 3px;
     font-family: "Roboto Mono";
-    font-size: .85rem;
+    font-size: 1rem;
+    background-color: #00000050;
+    backdrop-filter: blur(8px);
     width: 25%;
-    height: 16em;
+    height: 19em;
     margin: 0em .5em;
 }
 .bookmark-inner-container {
     overflow-y: scroll;
     height: 80%;
     vertical-align: top;
+    background-color: #00000000;
 }
 .bookmark-title {
+    height: 15%;
+    display: flex;
     font-family: "Roboto";
     font-size: 1.2rem;
     font-weight: 600;
+    background-color: #000000b0;
     color: #ededed;
-    margin: 0em 0em .35em 0em;
+    margin: 0em 0em .5em 0em;
+    justify-content: center;
+    align-items: center;
 }
 .bookmark {
     text-decoration: none;
@@ -121,5 +137,6 @@ body {
 }
 .bookmark:hover {
     color: #fff;
+    background-color: #00000090;
 }
 
