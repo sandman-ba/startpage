@@ -1,6 +1,6 @@
 // Search on enter key event
 document.getElementById("search-field").addEventListener("keydown",  event => {
-    if (event.keyCode === 13) {
+    if (event.key === 'Enter') {
         var val = document.getElementById("search-field").value;
         window.open("https://searx.be/search?q=" + val);
     }
@@ -8,35 +8,15 @@ document.getElementById("search-field").addEventListener("keydown",  event => {
 
 // Get current time and format
 getTime = () => {
-    let date = new Date(),
-        min = date.getMinutes(),
-        hour = date.getHours();
-    return "" +
-        (hour < 10 ? ("0" + hour) : hour) + ":" +
-        (min < 10 ? ("0" + min) : min);
+    let date = new Date();
+    return date.toLocaleTimeString('en-UK');
 }
 
 // Get current date and format
 getToday = () => {
     let date = new Date(),
-        months = ["January", "February", "March", "April", "June", "July", "August", "September", "October", "November", "December"],
-    days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-        day = date.getDate(),
-    weekday = days[date.getDay() - 1],
-        month = months[date.getMonth() - 1],
-        year = date.getFullYear();
-
-    return "" +
-        weekday + " the " +
-        ((day % 10) == 1 ? (day + "st") :
- ((day % 10) == 2 ? (day + "nd") :
-  ((day % 10) == 3 ? (day + "rd") :
-   (day + "th")
-  )
- )
-) + " of " +
-month + " " +
-        year;
+        options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+    return date.toLocaleDateString('en-UK', options);
 }
 
 window.onload = () => {
@@ -63,10 +43,10 @@ window.onload = () => {
 (document,'script','weatherwidget-io-js');
 
 document.addEventListener("keydown", event => {
-    if (event.keyCode == 32) {          // Spacebar code to open search
+    if (event.key == 'Space') {          // Spacebar code to open search
         document.getElementById('search').style.display = 'flex';
         document.getElementById('search-field').focus();
-    } else if (event.keyCode == 27) {   // Esc to close search
+    } else if (event.key == 'Escape') {   // Esc to close search
         document.getElementById('search-field').value = '';
         document.getElementById('search-field').blur();
         document.getElementById('search').style.display = 'none';
