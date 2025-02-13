@@ -1,8 +1,8 @@
 // Search on enter key event
 document.getElementById("search-field").addEventListener("keydown",  event => {
-    if (event.key === 'Enter') {
+    if (event.code === 'Enter') {
         var val = document.getElementById("search-field").value;
-        window.open("https://searx.be/search?q=" + val);
+        window.open("https://search.brave.com/search?q=" + val);
     }
 });
 
@@ -30,23 +30,11 @@ window.onload = () => {
     document.getElementById("current_date").innerHTML = getToday();
 }
 
-// Weather Widget Function
-!function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if(!d.getElementById(id)){
-	js = d.createElement(s);
-	js.id = id;
-	js.src = 'https://weatherwidget.io/js/widget.min.js';
-	fjs.parentNode.insertBefore(js,fjs);
-    }
-}
-(document,'script','weatherwidget-io-js');
-
 document.addEventListener("keydown", event => {
-    if (event.key == 'Space') {          // Spacebar code to open search
+    if (event.code == 'Space') {          // Spacebar code to open search
         document.getElementById('search').style.display = 'flex';
         document.getElementById('search-field').focus();
-    } else if (event.key == 'Escape') {   // Esc to close search
+    } else if (event.code == 'Escape') {   // Esc to close search
         document.getElementById('search-field').value = '';
         document.getElementById('search-field').blur();
         document.getElementById('search').style.display = 'none';
