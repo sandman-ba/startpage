@@ -1,2 +1,3 @@
-# startpage
-Simple custom start page for web browsers
+# Browser Home Page
+
+Simple custom home page for web browsers
